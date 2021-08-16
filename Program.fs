@@ -1,5 +1,12 @@
 open System
 
+let read_key() : double =
+    let ok, result = Double.TryParse(Console.ReadLine())
+    if ok then
+        result
+    else
+        raise(Exception("Use numbers only"))
+
 let PQ p q =
     if Math.Sqrt(Math.Pow(p/2.0, 2.0) - q) < 0.0 then
         raise(Exception("Error"))
@@ -10,9 +17,10 @@ let PQ p q =
 [<EntryPoint>]
 let main argv =
     printf "Value for P: "
-    let p1 : double = Double.Parse(Console.ReadLine())
+    let p1 : double = read_key()
+
     printf "Value for Q: "
-    let q1 : double = Double.Parse(Console.ReadLine())
+    let q1 : double = read_key()
 
     let vol = PQ p1 q1
     printf "\nf(x) = x² + p + q\n"
