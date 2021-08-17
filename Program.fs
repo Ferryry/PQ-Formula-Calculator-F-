@@ -8,7 +8,7 @@ let read_key() : double =
         raise(Exception("Use numbers only"))
 
 let PQ p q =
-    if Math.Sqrt(Math.Pow(p/2.0, 2.0) - q) < 0.0 then
+    if (Math.Pow(p/2.0, 2.0) - q) < 0.0 then
         raise(Exception("Error"))
 
     let temp = [| -(p/2.0) + Math.Sqrt(Math.Pow(p/2.0, 2.0) - q), -(p/2.0) - Math.Sqrt(Math.Pow(p/2.0, 2.0) - q)|]
