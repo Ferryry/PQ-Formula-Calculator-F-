@@ -15,6 +15,7 @@ type MainWindow() as this =
         base.Height <- 400.0
         base.Background <- Media.Brush.Parse("white")
         base.CanResize <- false
+        base.WindowState <- Controls.WindowState.Normal
         
         Elmish.Program.mkSimple (fun() -> Main.init) Main.Update Main.View
         |> Avalonia.FuncUI.Elmish.Program.withHost this
@@ -38,4 +39,8 @@ module Program =
 
     [<EntryPoint>]
     let main(args: string[]) =
-        AppBuilder.Configure<App>().UsePlatformDetect().UseSkia().StartWithClassicDesktopLifetime(args)
+        try
+            AppBuilder.Configure<App>().UsePlatformDetect().UseSkia().StartWithClassicDesktopLifetime(args)
+        with
+            _ ->
+                -1
